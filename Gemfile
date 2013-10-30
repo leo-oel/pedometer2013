@@ -47,4 +47,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'annotate'
 end
+
+gem 'bcrypt-ruby'
