@@ -1,0 +1,11 @@
+<%= form_for(@record) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%#= f.text_area :date, placeholder: "date:" %>
+    <%#= f.text_field :date, placeholder: "date:" %>
+   	<%= f.date_select(:date, :use_month_numbers => false, :start_year => 2013) %>
+    <%= f.text_field(:steps, placeholder: "steps") %>
+    <%= f.text_area(:comment, placeholder: "leave comments if any...") %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

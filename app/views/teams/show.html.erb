@@ -1,0 +1,21 @@
+<% provide(:title, @team.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%#= gravatar_for @team %>
+        <%= @team.name %>
+      </h1>
+    </section>
+  </aside>
+
+  <div class="span8">
+    <%# if @user.records.any? %> 
+      <h3>Members (<%#= @user.records.count %>)</h3>
+      <ol class="records">
+        <%#= render @records %>
+      </ol>
+      <%#= will_paginate @records %>
+    <%# end %>
+  </div>  
+</div>
