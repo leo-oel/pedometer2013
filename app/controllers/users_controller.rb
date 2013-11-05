@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @records = @user.records.paginate(page: params[:page])
   end
-
+ 
   def new
     @user = User.new
   end
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
 
   
   def edit
+    @teams = Team.all
   end
 
   def update
@@ -58,12 +60,13 @@ class UsersController < ApplicationController
 
     # Before actions
 
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Please sign in."
-      end
-    end
+    # moved to application_helper.rb
+    #def signed_in_user
+    #  unless signed_in?
+    #    store_location
+    #    redirect_to signin_url, notice: "Please sign in."
+    #  end
+    #end
 
     def correct_user
       @user = User.find(params[:id])
