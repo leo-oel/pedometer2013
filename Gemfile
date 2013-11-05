@@ -50,4 +50,10 @@ group :development, :test do
   gem 'annotate'
 end
 
-gem 'bcrypt-ruby'
+gem 'bootstrap-sass', '2.3.2.0'
+gem 'bcrypt-ruby', '3.0.1'
+#gem "devise"
+#gem 'protected_attributes'
+gem 'faker', '1.1.2'
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.6'
