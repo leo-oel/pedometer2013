@@ -1,7 +1,7 @@
-#source 'https://rubygems.org'
-source 'http://bundler-api.herokuapp.com'
+source 'https://rubygems.org'
+#source 'http://bundler-api.herokuapp.com'
 
-ruby '2.0.0'
+#ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -33,18 +33,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'annotate'
@@ -60,7 +48,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.6'
-gem 'chartkick'
+#gem 'chartkick'
 
 group :production do
   gem 'pg', '0.15.1'
