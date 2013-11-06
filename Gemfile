@@ -1,6 +1,9 @@
 #source 'https://rubygems.org'
 source 'http://bundler-api.herokuapp.com'
 
+ruby '2.0.0'
+#ruby-gemset=railstutorial_rails_4_0
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
