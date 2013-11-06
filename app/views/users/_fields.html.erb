@@ -11,7 +11,7 @@
 <%   opts.push([t.name, t.id]) %>
 <% } %>
 <%= f.label :team %>
-<%= f.select :team, opts, :include_blank => true %>
+<%= f.select :team_id, opts, :include_blank => true %>
 
 <%= f.label :password %>
 <%= f.password_field :password %>

@@ -1,6 +1,12 @@
 <% provide(:title, 'All teams') %>
 <h1>All teams</h1>
 
+<% if current_user.admin? %>
+ <div class='rightmenu'>
+ 	<%= link_to "[register a new team]", new_team_path %>
+ </div>
+<% end  %>
+
 <%= will_paginate %>
 
 <ul class="users">
@@ -8,3 +14,4 @@
 </ul>
 
 <%= will_paginate %>
+

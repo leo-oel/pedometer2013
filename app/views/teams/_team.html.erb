@@ -1,8 +1,11 @@
 <li>
   <%#= gravatar_for user, size: 52 %>
   <%= link_to team.name, team %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", team, method: :delete,
+  has
+  <%= pluralize(team.users.size, "member") %>
+
+  <% if current_user.admin? %>
+  	<%= link_to "[delete]", team, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
 </li>

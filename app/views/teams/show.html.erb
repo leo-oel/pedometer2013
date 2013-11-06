@@ -4,18 +4,17 @@
     <section>
       <h1>
         <%#= gravatar_for @team %>
-        <%= @team.name %>
+        Team <%= @team.name %>
       </h1>
     </section>
   </aside>
-
+  has <%= pluralize(@team.users.size, "member") %>
   <div class="span8">
-    <%# if @user.records.any? %> 
-      <h3>Members (<%#= @user.records.count %>)</h3>
+    <% if @team.users.size > 0 %>
       <ol class="records">
-        <%#= render @records %>
+        <%= render @team.users %>
       </ol>
-      <%#= will_paginate @records %>
-    <%# end %>
+    <% end %>
   </div>  
 </div>
+
