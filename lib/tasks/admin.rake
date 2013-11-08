@@ -8,6 +8,5 @@ namespace :db do
                  password_confirmation: "iamauthorized",
                  admin: true,
                  team_id: 0)
-    end
   end
 end
