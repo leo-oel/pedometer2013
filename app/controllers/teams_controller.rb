@@ -43,6 +43,9 @@ class TeamsController < ApplicationController
 
 
   def destroy
+    Team.find(params[:id]).destroy
+    flash[:success] = "Team destroyed."
+    redirect_to users_url
   end
 
   #---------
