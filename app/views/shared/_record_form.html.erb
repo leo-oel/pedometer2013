@@ -1,10 +1,27 @@
-<%= form_for(@record) do |f| %>
+<%= form_for(@record ) do |f| %>
+  <%# => records/update %>
+
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%#= f.text_area :date, placeholder: "date:" %>
     <%#= f.text_field :date, placeholder: "date:" %>
-   	<%= f.date_select(:date, :use_month_numbers => false, :start_year => 2013) %>
-    <%= f.text_field(:steps, placeholder: "steps") %>
+   	<%= f.date_select :date, 
+   						{:start_year => 2013,
+   						:date_separator => '/',
+   						:use_month_numbers => true },
+   						{:class => "date-selecter"} %>
+    <br />
+    <%= f.text_field :steps, 
+    					:placeholder => "number",
+    					:class => "date-selecter"  %>
+
+	  <%= f.select :activity, 
+					[ ["steps", "steps"], ["km walk", "km_walk"],
+   					  ["km ride", "km_ride"], ["m swam", "m_swam"] ], 
+				{:selected => "steps"},
+				{:class => "activity-unit"} %>
+
+    <br />
     <%= f.text_area(:comment, placeholder: "leave comments if any...") %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>

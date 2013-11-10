@@ -9,7 +9,9 @@ class RecordsController < ApplicationController
   #end
 
   def create
-    @record = current_user.records.build(record_params)
+
+    #@record = current_user.records.build(record_params)
+    @record = current_user.records.new(record_params)
     if @record.save
       flash[:success] = "Record created!"
       redirect_to root_url
@@ -29,7 +31,32 @@ class RecordsController < ApplicationController
   private
 
     def record_params
-      params.require(:record).permit(:steps, :date, :comment)
+      p = params.require(:record).permit(:steps, :date, :comment, :activity)
+
+      steps = p["steps"].to_i
+      comment = p["comment"]
+      activity = p["activity"]
+      date = Date.parse("#{p['date(1i)']}/#{p['date(2i)']}/#{p['date(3i)']}")
+  
+      cnst = Constant.find(1)
+      case activity 
+      when "steps" 
+        steps = steps
+        comment = comment
+      when "km_walk" 
+        comment = comment + " [#{steps} km walked]"
+        steps = steps*1000*10 / cnst["stride"]   # km -> steps
+      when "km_ride" 
+        comment = comment + "[#{steps} km rode]"
+        steps = steps * cnst["ride_steps_per_k"]
+      when "m_swam" 
+        comment = comment + "[#{steps} m swam]"
+        steps = steps * cnst["swim_steps_per_m"] /100
+      else
+        steps = steps
+        comment = comment
+      end
+      return {:steps=>steps, :comment=>comment, :date=>date}
     end
 
     def correct_user  

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105142130) do
+ActiveRecord::Schema.define(version: 20131110130609) do
+
+  create_table "constants", force: true do |t|
+    t.integer  "stride"
+    t.integer  "swim_steps_per_m"
+    t.integer  "ride_steps_per_km"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "records", force: true do |t|
     t.integer  "steps"
@@ -20,6 +28,7 @@ ActiveRecord::Schema.define(version: 20131105142130) do
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "activity"
   end
 
   add_index "records", ["user_id", "created_at"], name: "index_records_on_user_id_and_created_at"
