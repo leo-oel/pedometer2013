@@ -1,0 +1,20 @@
+<% provide(:title, "Constants") %>
+<h1>Constants</h1>
+
+<div>
+
+    <%= form_for(@const) do |f| %>
+      <%= f.label "stride" %>
+      <%= f.text_field :stride, :placeholder=>"cm" %> cm
+
+      <%= f.label "swimming for 100m worthes " %>
+      <%= f.text_field :swim_steps_per_m, :placeholder=>"steps" %> steps/100m
+ 
+      <%= f.label "riding for 1km worthes" %>
+      <%= f.text_field :ride_steps_per_km, :placeholder=>"steps" %> steps/km
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>
