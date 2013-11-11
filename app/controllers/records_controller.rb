@@ -48,7 +48,7 @@ class RecordsController < ApplicationController
         steps = steps*1000*10 / cnst["stride"]   # km -> steps
       when "km_ride" 
         comment = comment + "[#{steps} km rode]"
-        steps = steps * cnst["ride_steps_per_k"]
+        steps = steps * cnst["ride_steps_per_km"]
       when "m_swam" 
         comment = comment + "[#{steps} m swam]"
         steps = steps * cnst["swim_steps_per_m"] /100
