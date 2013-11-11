@@ -33,7 +33,7 @@ class RecordsController < ApplicationController
     def record_params
       p = params.require(:record).permit(:steps, :date, :comment, :activity)
 
-      steps = p["steps"].to_i
+      steps = p["steps"].to_f
       comment = p["comment"]
       activity = p["activity"]
       date = Date.parse("#{p['date(1i)']}/#{p['date(2i)']}/#{p['date(3i)']}")
@@ -56,7 +56,7 @@ class RecordsController < ApplicationController
         steps = steps
         comment = comment
       end
-      return {:steps=>steps, :comment=>comment, :date=>date}
+      return {:steps=>steps.to_i, :comment=>comment, :date=>date}
     end
 
     def correct_user  
