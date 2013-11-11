@@ -3,7 +3,11 @@
   <%= link_to team.name, team %>
   has
   <%= pluralize(team.users.size, "member") %>
-
+  and has taken 
+  <% total=0 %>
+  <% team.users.each{|u| total = total + u.total } %>
+  <%= total %>
+  steps so far.
   <% if current_user.admin? %>
   	<%= link_to "[delete]", team, method: :delete,
                                   data: { confirm: "You sure?" } %>

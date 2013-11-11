@@ -45,7 +45,7 @@ class RecordsController < ApplicationController
         comment = comment
       when "km_walk" 
         comment = comment + " [#{steps} km walked]"
-        steps = steps*1000*10 / cnst["stride"]   # km -> steps
+        steps = steps*1000*100 / cnst["stride"]   # km -> steps
       when "km_ride" 
         comment = comment + "[#{steps} km rode]"
         steps = steps * cnst["ride_steps_per_km"]
