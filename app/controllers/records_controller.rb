@@ -10,8 +10,8 @@ class RecordsController < ApplicationController
 
   def create
 
-    #@record = current_user.records.build(record_params)
-    @record = current_user.records.new(record_params)
+    @record = current_user.records.build(record_params)
+    #@record = current_user.records.new(record_params)
     if @record.save
       flash[:success] = "Record created!"
       redirect_to root_url
