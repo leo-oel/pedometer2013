@@ -9,7 +9,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @records = @user.records.paginate(page: params[:page])
+    @record = @user.records.build if signed_in?
+    @feed_items = @user.feed.paginate(page: params[:page])
+    #@records = @user.records.paginate(page: params[:page])
   end
  
   def new

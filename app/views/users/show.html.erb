@@ -13,9 +13,9 @@
     <% if @user.records.any? %>
       <h3>Records (<%= @user.records.count %>)</h3>
       <ol class="records">
-        <%= render @records %>
+        <%= render 'shared/feed' %>
+
       </ol>
-      <%= will_paginate @records %>
     <% end %>
   </div>  
 </div>
