@@ -51,7 +51,7 @@ class RecordsController < ApplicationController
         steps = steps * cnst["ride_steps_per_km"]
       when "m_swam" 
         comment = comment + "[#{steps} m swam]"
-        steps = steps * cnst["swim_steps_per_m"] /100
+        steps = steps * cnst["swim_steps_per_m"]
       else
         steps = steps
         comment = comment
