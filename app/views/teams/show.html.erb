@@ -7,14 +7,21 @@
         Team <%= @team.name %>
       </h1>
     </section>
-  </aside>
-  has <%= pluralize(@team.users.size, "member") %>
-  <div class="span8">
+    has <%= pluralize(@team.users.size, "member") %>
     <% if @team.users.size > 0 %>
       <ol class="records">
         <%= render @team.users %>
       </ol>
     <% end %>
+  </aside>
+  <div class="span8">
+    <% options = {:title=> 'progress', :hAxis=> {title: 'steps'}, :isStacked=>true} %>
+    <% data=[]  %>
+    <% @team.users.each{ |u| data.push( {:name=>u.name,  :data=>[['',''], [@team.name, u.total]]} ) } %>   
+
+    <%= bar_chart data, :library=>options %>
+
   </div>  
 </div>
+<%#=  %>
 
