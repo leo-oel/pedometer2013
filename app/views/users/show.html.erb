@@ -9,7 +9,8 @@
     </section>
 
 
-    <% sql = <<-ENDSQL
+    <% # for Posrgresql
+      sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
   FROM
     (SELECT user_id, steps, ((recdate- DATE('2012/12/30'))/7)*7+DATE('2012/12/30') as weekno FROM records ) as t2
@@ -22,7 +23,7 @@ ENDSQL
 
     <% data = [] %>
     <% tbl.each{|t|
-      data.push([t.weekno.to_s.replace(/%d%d%d%d-/,'').replace(/-/,'/'), t.total])
+      data.push([t.weekno.to_s.sub(/%d%d%d%d-/,'').sub(/-/,'/'), t.total])
     } %>
     
     <%= line_chart data, :library=>grpopt %>
