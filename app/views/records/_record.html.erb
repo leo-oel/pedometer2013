@@ -6,6 +6,6 @@
   <% if current_user?(record.user) %>
     <%= link_to "delete", record, method: :delete,
                                      data: { confirm: "You sure?" },
-                                     title: "#{record.steps} on #{record.date}" %>
+                                     title: "#{record.steps} on #{record.recdate}" %>
   <% end %>
 </li>

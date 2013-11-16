@@ -19,3 +19,17 @@
     <% end %>
   </div>  
 </div>
+
+<%# select weekno, sum(steps) 
+from (select steps, ((date-'2012/12/30')/7) as weekno from records where user_id=22) as t2 
+group by weekno
+order by weekno;
+ %>
+
+ <%# t = Record.find_by_sql("SELECT steps, ((date-'2012/12/30')/7) as weekno from records where user_id=#{@user.id}") %>
+ <% data = Record.find_by_sql("SELECT weekno, sum(steps) as total
+          FROM( SELECT steps, ((recdate- DATE('2012/12/30'))/7)*7*DATE('2012/12/30') as weekno from records where user_id=#{@user.id} ) as t2
+          GROUP BY weekno ORDER BY weekno") %>
+ <% data.each{|d| %>
+ <%=  d.weekno  %> <%= d.total %>
+ <% } %>

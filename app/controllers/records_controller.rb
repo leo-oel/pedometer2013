@@ -31,12 +31,12 @@ class RecordsController < ApplicationController
   private
 
     def record_params
-      p = params.require(:record).permit(:steps, :date, :comment, :activity)
+      p = params.require(:record).permit(:steps, :recdate, :comment, :activity)
 
       steps = p["steps"].to_f
       comment = p["comment"]
       activity = p["activity"]
-      date = Date.parse("#{p['date(1i)']}/#{p['date(2i)']}/#{p['date(3i)']}")
+      recdate = Date.parse("#{p['recdate(1i)']}/#{p['recdate(2i)']}/#{p['recdate(3i)']}")
   
       cnst = Constant.find(1)
       case activity 
@@ -56,7 +56,7 @@ class RecordsController < ApplicationController
         steps = steps
         comment = comment
       end
-      return {:steps=>steps.to_i, :comment=>comment, :date=>date}
+      return {:steps=>steps.to_i, :comment=>comment, :recdate=>recdate}
     end
 
     def correct_user  

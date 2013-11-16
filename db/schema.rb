@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110130609) do
+ActiveRecord::Schema.define(version: 20131116094647) do
 
   create_table "constants", force: true do |t|
     t.integer  "stride"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20131110130609) do
   create_table "records", force: true do |t|
     t.integer  "steps"
     t.integer  "user_id"
-    t.date     "date"
+    t.date     "recdate"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
