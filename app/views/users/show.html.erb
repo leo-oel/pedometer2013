@@ -7,6 +7,26 @@
         <%= @user.name %>
       </h1>
     </section>
+
+
+    <% sql = <<-ENDSQL
+  SELECT weekno, sum(steps) as total
+  FROM
+    (SELECT user_id, steps, ((recdate- DATE('2012/12/30'))/7)*7+DATE('2012/12/30') as weekno FROM records ) as t2
+  WHERE user_id=#{@user.id} GROUP BY weekno ORDER BY weekno
+ENDSQL
+    %>
+    <% tbl = Record.find_by_sql(sql) %>
+    <% grpopt = { :title=> 'progress', 
+                  :hAxis=> {slantedText: true, slantedTextAngle: 90} } %>
+
+    <% data = [] %>
+    <% tbl.each{|t|
+      data.push([t.weekno, t.total])
+    } %>
+    
+    <%= line_chart data, :library=>grpopt %>
+
   </aside>
 
   <div class="span8">
@@ -19,32 +39,3 @@
     <% end %>
   </div>  
 </div>
-
-<%# select weekno, sum(steps) 
-from (select steps, ((date-'2012/12/30')/7) as weekno from records where user_id=22) as t2 
-group by weekno
-order by weekno;
- %>
-
- <%# t = Record.find_by_sql("SELECT steps, ((date-'2012/12/30')/7) as weekno from records where user_id=#{@user.id}") %>
- <% sql = <<-ENDSQL
-  SELECT weekno, sum(steps) as total
-  FROM
-    (SELECT user_id, steps, ((recdate- DATE('2012/12/30'))/7)*7+DATE('2012/12/30') as weekno FROM records ) as t2
-  WHERE user_id=#{@user.id} GROUP BY weekno ORDER BY weekno
-ENDSQL
- %>
-<% tbl = Record.find_by_sql(sql) %>
-<% grpopt = {:title=> 'progress', :hAxis=> {title: 'steps'}, :isStacked=>true} %>
-<%# @team.users.each{ |u| data.push( {:name=>u.name,  :data=>[['',''], [@team.name, u.total]]} ) } %>   
-
-<% data = [] %>
-<% tbl.each{|t|
-    data.push([t.weekno, t.total])
-} %>
-<%= line_chart data, :library=>grpopt %>
-
-
- <%# data.each{|d| %>
- <%#=  d.weekno  %> <%#= d.total %>
- <%# } %>
