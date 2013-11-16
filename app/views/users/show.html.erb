@@ -26,7 +26,7 @@ ENDSQL
       data.push([t.weekno.strftime("\"%m/%d\*"), t.total])
     } %>
     
-    <%= line_chart data, :library=>grpopt %>
+    <%= bar_chart data, :library=>grpopt %>
 
   </aside>
 
