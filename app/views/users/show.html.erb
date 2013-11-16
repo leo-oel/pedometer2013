@@ -23,7 +23,7 @@ ENDSQL
 
     <% data = [] %>
     <% tbl.each{|t|
-      data.push([t.weekno.to_s.sub(/%d%d%d%d-/,'').sub(/-/,'/'), t.total])
+      data.push([t.strftime("%m/%d_"), t.total])
     } %>
     
     <%= line_chart data, :library=>grpopt %>
