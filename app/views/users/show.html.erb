@@ -33,8 +33,18 @@ order by weekno;
     (SELECT user_id, steps, ((recdate- DATE('2012/12/30'))/7)*7+DATE('2012/12/30') as weekno FROM records ) as t2
   WHERE user_id=#{@user.id} GROUP BY weekno ORDER BY weekno
 ENDSQL
-    data = Record.find_by_sql(sql) %>
- 
- <% data.each{|d| %>
- <%=  d.weekno  %> <%= d.total %>
- <% } %>
+ %>
+<% tbl = Record.find_by_sql(sql) %>
+<% grpopt = {:title=> 'progress', :hAxis=> {title: 'steps'}, :isStacked=>true} %>
+<%# @team.users.each{ |u| data.push( {:name=>u.name,  :data=>[['',''], [@team.name, u.total]]} ) } %>   
+
+<% data = [] %>
+<% tbl.each{|t|
+    data.push([t.weekno, t.total])
+} %>
+<%= line_chart data, :library=>grpopt %>
+
+
+ <%# data.each{|d| %>
+ <%#=  d.weekno  %> <%#= d.total %>
+ <%# } %>
