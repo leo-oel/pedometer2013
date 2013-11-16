@@ -17,8 +17,8 @@
 ENDSQL
     %>
     <% tbl = Record.find_by_sql(sql) %>
-    <% grpopt = { :title=> 'progress', 
-                  :hAxis=> {slantedText: true, slantedTextAngle: 90} } %>
+    <% grpopt = { :title=> 'weekly progress', 
+                  :hAxis=> {slantedText: true, slantedTextAngle: 90, format:'MMM d'} } %>
 
     <% data = [] %>
     <% tbl.each{|t|
