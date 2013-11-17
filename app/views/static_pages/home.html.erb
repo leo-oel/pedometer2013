@@ -7,6 +7,26 @@
       <section>
         <%= render 'shared/record_form' %>
       </section>
+    <% # for Posrgresql
+      sql = <<-ENDSQL
+  SELECT weekno, sum(steps) as total
+  FROM
+    (SELECT user_id, steps, ((recdate- DATE('2012/12/30'))/7)*7+DATE('2012/12/30') as weekno FROM records ) as t2
+  WHERE user_id=#{@user.id} GROUP BY weekno ORDER BY weekno
+ENDSQL
+    %>
+    <% tbl = Record.find_by_sql(sql) %>
+    <% grpopt = { :title=> 'weekly progress', 
+                  :hAxis=> {slantedText: true, slantedTextAngle: 90, format:'MMM d'} } %>
+
+    <% data = [] %>
+    <% tbl.each{|t|
+      data.push([t.weekno.strftime("%m/%d"), t.total])
+    } %>
+    
+    <%= column_chart data, :library=>grpopt %>
+
+
     </aside>
 
     <div class="span8">
