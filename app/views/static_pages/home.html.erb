@@ -12,7 +12,7 @@
   SELECT weekno, sum(steps) as total
   FROM
     (SELECT user_id, steps, ((recdate- DATE('2012/12/30'))/7)*7+DATE('2012/12/30') as weekno FROM records ) as t2
-  WHERE user_id=#{@user.id} GROUP BY weekno ORDER BY weekno
+  WHERE user_id=#{current_user.id} GROUP BY weekno ORDER BY weekno
 ENDSQL
     %>
     <% tbl = Record.find_by_sql(sql) %>
