@@ -1,10 +1,12 @@
 Pedometer::Application.routes.draw do
+  get "password_resets/new"
   resources :users
   resources :teams
   resources :sessions,   only: [:new, :create, :destroy]
   resources :records,    only: [:create, :destroy]
   resources :constants
-
+  resources :password_resets
+  
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
