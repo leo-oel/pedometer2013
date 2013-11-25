@@ -20,11 +20,11 @@ ENDSQL
                   :hAxis=> {slantedText: true, slantedTextAngle: 90, format:'MMM d'} } %>
 
     <% data = [] %>
-    <%# tbl.each{|t|
+    <% tbl.each{|t|
       data.push([t.weekno.strftime("%m/%d"), t.total])
     } %>
     
-    <%#= column_chart data, :library=>grpopt %>
+    <%= column_chart data, :library=>grpopt %>
 
 
     </aside>
