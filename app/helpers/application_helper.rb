@@ -1,6 +1,6 @@
 module ApplicationHelper
   def full_title(page_title)
-    base_title = "Pedometer2013"
+    base_title = "Pedometer"
     if page_title.empty?
       base_title
     else
