@@ -18,15 +18,16 @@
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
   FROM
-    (SELECT user_id, steps, 
-         ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
-    FROM records
-    WHERE TO_DATE(TO_CHAR(recdate),'YYYY/MM/DD') > DATE('#{tally_from}')
-      AND TO_DATE(TO_CHAR(recdate),'YYYY/MM/DD') < DATE('#{tally_to}')
+    (SELECT user_id, steps, recdate, 
+          ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
+     FROM records 
     ) as t2
-  WHERE user_id=#{@user.id} 
+  WHERE (user_id=#{current_user.id} )
+    AND (recdate > to_date('#{tally_from}', 'YYYY/MM/DD') )
+    AND (recdate < to_date('#{tally_to}',   'YYYY/MM/DD') )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
+
 #    (recdate > DATE('#{tally_from}')) AND (recdate < DATE('#{tally_to}'))  ) as t2
     %>
     <% tbl = Record.find_by_sql(sql) %>
