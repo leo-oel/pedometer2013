@@ -21,8 +21,8 @@
      FROM records 
     ) as t2
   WHERE (user_id=#{current_user.id} )
-    AND (recdate > '#{tally_from}'::date )
-    AND (recdate < '#{tally_to}'::date )
+    AND (recdate > DATE('#{tally_from}') )
+    AND (recdate < DATE('#{tally_to}') )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
       logger.fatal(sql)
