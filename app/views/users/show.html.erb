@@ -11,8 +11,8 @@
 
     <% 
       cnst = Constant.find(1)
-      tally_from = cnst["tally_from"]
-      tally_to = cnst["tally_to"]
+      tally_from = cnst.tally_from
+      tally_to = cnst.tally_to
 
     # for Posrgresql
       sql = <<-ENDSQL
@@ -23,8 +23,8 @@
      FROM records 
     ) as t2
   WHERE (user_id=#{current_user.id} )
-    AND (recdate > to_date('#{tally_from}', 'YYYY/MM/DD') )
-    AND (recdate < to_date('#{tally_to}',   'YYYY/MM/DD') )
+    AND (recdate > '#{tally_from}'::date )
+    AND (recdate < '#{tally_to}'::date )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
 

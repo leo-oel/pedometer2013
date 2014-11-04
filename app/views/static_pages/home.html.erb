@@ -9,12 +9,8 @@
       </section>
     <% 
       cnst = Constant.find(1)
-      tally_from = cnst["tally_from"]
-      tally_to = cnst["tally_to"]
-      logger.fatal("tally to=")
-      logger.fatal(tally_to)
-      logger.fatal(cnst.tally_to)
-      logger.fatal(cnst.inspect)
+      tally_from = cnst.tally_from
+      tally_to = cnst.tally_to
     # for Posrgresql
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
