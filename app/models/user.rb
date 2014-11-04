@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     cnst = Constant.find(1)
     if rec.any?
       rec.each{ |f|
-        if f.recdate >= cnst.tally_from && f.recdate < cnst.tally_to then
+        if f.recdate >= Time.parse(cnst.tally_from) && f.recdate < Time.parse(cnst.tally_to) then
           sum = sum + f.steps
         end
       }
