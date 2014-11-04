@@ -13,6 +13,7 @@
       tally_to = cnst["tally_to"]
       logger.fatal("tally to=")
       logger.fatal(tally_to)
+      logger.fatal(cnst.inspect)
     # for Posrgresql
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
