@@ -14,7 +14,7 @@
 
     # for Posrgresql
       sql = <<-ENDSQL
-  SELECT weekno, sum(steps) as total, recdate
+  SELECT weekno, sum(steps) as total
   FROM
     (SELECT user_id, steps, recdate, 
           ((recdate - DATE('#{tally_from}'))/7)*7 + DATE('#{tally_from}') as weekno 
