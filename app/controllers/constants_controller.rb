@@ -30,7 +30,7 @@ class ConstantsController < ApplicationController
 
     def const_params
       params.require(:constant).permit(
-      	     :stride, :swim_steps_per_m, :ride_steps_per_km )
+      	     :stride, :swim_steps_per_m, :ride_steps_per_km, :tally_from, :tally_to )
     end
 
     def admin_user
