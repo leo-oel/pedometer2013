@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20131125140229) do
     t.integer  "ride_steps_per_km"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tally_from"
+    t.string   "tally_to"
   end
 
   create_table "records", force: true do |t|
