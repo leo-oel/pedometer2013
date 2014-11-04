@@ -11,6 +11,7 @@
       cnst = Constant.find(1)
       tally_from = cnst.tally_from
       tally_to = cnst.tally_to
+
     # for Posrgresql
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
@@ -24,7 +25,7 @@
     AND (recdate < '#{tally_to}'::date )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
-
+      logger.fatal(sql)
     %>
     <% tbl = Record.find_by_sql(sql) %>
     <% grpopt = { :title=> 'weekly progress', 
