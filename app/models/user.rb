@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Record.where("user_id = ?", id)
+    cnst = Constant.find(1)
+    Record.where("user_id = ?", id).where("recdate >= ?", Time.parse(cnst.tally_from)).where("recdate < ?", Time.parse(cnst.tally_to)) 
   end
 
   def total
