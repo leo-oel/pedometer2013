@@ -30,8 +30,10 @@ class User < ActiveRecord::Base
   def total
     rec = Record.where("user_id = ?", id)
     sum=0
+    cnst = Constant.find(1)
     if rec.any?
       rec.each{ |f|
+        if(f.recdate >= cnst.tally_from && f.recdate < cnst.tally_to)
         sum = sum + f.steps
       }
       #     <%= "#{sum} steps so far" %>
