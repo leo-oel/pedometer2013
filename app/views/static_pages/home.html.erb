@@ -11,8 +11,8 @@
       cnst = Constant.find(1)
       tally_from = cnst["tally_from"]
       tally_to = cnst["tally_to"]
-      logger.debug("tally to=")
-      logger.debug(tally_to)
+      logger.fatal("tally to=")
+      logger.fatal(tally_to)
     # for Posrgresql
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
