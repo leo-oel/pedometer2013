@@ -14,10 +14,10 @@
       <%= f.text_field :ride_steps_per_km, :placeholder=>"steps" %> steps/km
 
       <%= f.label "tally up from" %>
-      <%= f.text_field :tally_from, :placeholder=>"from_date (yyyymmdd)" %> 
+      <%= f.text_field :tally_from, :placeholder=>"from_date (yyyy/mm/dd)" %> 
 
       <%= f.label "tally up to" %>
-      <%= f.text_field :tally_to, :placeholder=>"to_date (yyyymmdd)" %>
+      <%= f.text_field :tally_to, :placeholder=>"to_date (yyyy/mm/dd)" %>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>

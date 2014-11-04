@@ -7,11 +7,15 @@
       <section>
         <%= render 'shared/record_form' %>
       </section>
-    <% # for Posrgresql
+    <% 
+      cnst = Constant.find(1)
+      tally_from = cnst["tally_from"]
+      tally_to = cnst["tally_to"]
+    # for Posrgresql
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
   FROM
-    (SELECT user_id, steps, ((recdate- DATE('2013/12/29'))/7)*7+DATE('2013/12/29') as weekno FROM records ) as t2
+    (SELECT user_id, steps, ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno FROM records ) as t2
   WHERE user_id=#{current_user.id} 
   GROUP BY weekno ORDER BY weekno
 ENDSQL
