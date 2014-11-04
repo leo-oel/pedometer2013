@@ -11,6 +11,8 @@
       cnst = Constant.find(1)
       tally_from = cnst["tally_from"]
       tally_to = cnst["tally_to"]
+      logger.debug("tally to=")
+      logger.debug(tally_to)
     # for Posrgresql
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
@@ -20,8 +22,8 @@
      FROM records 
     ) as t2
   WHERE (user_id=#{current_user.id} )
-    AND (recdate > '#{tally_from}'::timestamp )
-    AND (recdate < to_date('#{tally_to}',   'YYYY/MM/DD') )
+    AND (recdate > '#{tally_from}'::date )
+    AND (recdate < '#{tally_to}'::date )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
 
