@@ -12,26 +12,16 @@
       tally_from = cnst["tally_from"]
       tally_to = cnst["tally_to"]
     # for Posrgresql
-  #    sql = <<-ENDSQL
-  #SELECT weekno, sum(steps) as total
-  #FROM
-  #  (SELECT user_id, steps, 
-  #        ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
-   #   FROM records 
-  #    WHERE (recdate > DATE('#{tally_from}')) AND (recdate < DATE('#{tally_to}')) ) as t2
-  #WHERE user_id=#{current_user.id} 
-  #GROUP BY weekno ORDER BY weekno
-#ENDSQL
       sql = <<-ENDSQL
   SELECT weekno, sum(steps) as total
   FROM
     (SELECT user_id, steps, 
-         ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
-    FROM records
-    WHERE TO_DATE(TO_CHAR(recdate),'YYYY/MM/DD') > DATE('#{tally_from}')
-      AND TO_DATE(TO_CHAR(recdate),'YYYY/MM/DD') < DATE('#{tally_to}')
+          ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
+     FROM records 
     ) as t2
-  WHERE user_id=#{@user.id} 
+  WHERE user_id=#{current_user.id} 
+  AND (recdate > DATE('#{tally_from}') )
+  AND (recdate < DATE('#{tally_to}')   )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
 
