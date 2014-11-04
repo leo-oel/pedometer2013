@@ -19,9 +19,9 @@
           ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
      FROM records 
     ) as t2
-  WHERE user_id=#{current_user.id} 
-  AND (recdate > DATE('#{tally_from}') )
-  AND (recdate < DATE('#{tally_to}')   )
+  WHERE (user_id=#{current_user.id} )
+    AND (recdate > to_date('#{tally_from}', 'YYYY/MM/DD') )
+    AND (recdate < to_date('#{tally_to}',   'YYYY/MM/DD') )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
 
