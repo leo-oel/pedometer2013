@@ -17,12 +17,12 @@
   SELECT weekno, sum(steps) as total
   FROM
     (SELECT user_id, steps, recdate, 
-          ((recdate- DATE('#{tally_from}'))/7)*7+DATE('#{tally_from}') as weekno 
-     FROM records 
+          ((recdate - DATE('#{tally_from}'))/7)*7 + DATE('#{tally_from}') as weekno 
+     FROM records
+     WHERE (recdate > DATE('#{tally_from}') )
+       AND (recdate < DATE('#{tally_to}') )
     ) as t2
   WHERE (user_id=#{current_user.id} )
-    AND (recdate > DATE('#{tally_from}') )
-    AND (recdate < DATE('#{tally_to}') )
   GROUP BY weekno ORDER BY weekno
 ENDSQL
       logger.fatal(sql)
